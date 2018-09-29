@@ -22,10 +22,10 @@ module.exports = {
         }
       },
       {
-        type: 'javascript/auto',
-        test: /\.mjs$/,
-        include: /node_modules/
+        test: /\.css$/,
+        include: SRC_DIR,
+        loader: ['style-loader', 'css-loader']
       }
     ]
   }
-}
+};

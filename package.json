@@ -25,6 +25,7 @@
     "morgan": "^1.9.1",
     "react": "^16.5.2",
     "react-dom": "16.4.2",
+    "react-liquid-gauge": "^1.2.4",
     "react-router-dom": "^4.3.1",
     "semantic-ui-react": "^0.82.2",
     "watson-developer-cloud": "^3.8.0"
@@ -38,7 +39,9 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^1.0.0",
     "express": "^4.16.3",
+    "style-loader": "^0.23.0",
     "webpack": "^4.17.0",
     "webpack-cli": "^3.1.0"
   }
