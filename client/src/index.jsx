@@ -9,5 +9,5 @@ ReactDOM.render(
     <BrowserRouter>
       <Route path="/" render={({history})=> <App history={history}/>}/>
     </BrowserRouter>
-);
+, document.getElementById("app"));
 
