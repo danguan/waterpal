@@ -1,5 +1,4 @@
 var path = require('path')
-var HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 require('babel-polyfill')
 
 var SRC_DIR = path.join(__dirname, '/client/src')
@@ -28,6 +27,5 @@ module.exports = {
         include: /node_modules/
       }
     ]
-  },
-  plugins: [new HardSourceWebpackPlugin()]
+  }
 }
