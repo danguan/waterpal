@@ -3,22 +3,28 @@ const geocoding = require('../helpers/geocoding.js');
 
 module.exports = {
   getFountain: (req, res) => {
-    fountain.getFountain(req.body, (err, result) => {
-      if (err) res.status(404).send('Error finding entry');
-
-      res.send(result);
-    });
+    fountain
+      .getFountain(req.query.name)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(404).send('Error finding fountain', err);
+      });
   },
   createEntry: (req, res) => {
-    fountain.createEntry(req.body, (err, result) => {
-      if (err) res.status(404).send('Error creating entry');
-
-      res.send('Created entry:', result.n);
-    });
+    fountain
+      .createEntry(req.body)
+      .then(data => {
+        res.send('Created entry');
+      })
+      .catch(err => {
+        res.status(404).send('Error creating entry:', err);
+      });
   },
   getLongLat: (req, res) => {
     geocoding
-      .getLongLat(req.query.location)
+      .getLongLat(req.query.site_name)
       .then(data => {
         res.send(data);
       })
