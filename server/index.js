@@ -19,12 +19,16 @@ app.use(cors());
 app.use(morgan('dev'));
 // End of Middleware
 
+// GET requests
 app.get('/fountain', getFountain);
+app.get('/longlat', getLongLat);
+// End
+
+// POST requests
 app.post('/fountain', createEntry);
+// End
 
 app.use(express.static(__dirname + '/../client/dist'));
-
-app.get('/longlat', getLongLat);
 
 app.listen(port, () => {
   console.log('Server connected on', port);
