@@ -1,0 +1,26 @@
+{
+  "name": "waterpal",
+  "version": "1.0.0",
+  "description": "Data visualization for finding places to get clean drinking water in NYC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StrykeBack/waterpal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StrykeBack/waterpal/issues"
+  },
+  "homepage": "https://github.com/StrykeBack/waterpal#readme",
+  "dependencies": {
+    "react": "^16.5.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.1.2"
+  }
+}
