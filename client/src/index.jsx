@@ -6,8 +6,9 @@ import './styles/css/main.css'
 
 
 ReactDOM.render( 
-    <BrowserRouter>
-      <Route path="/" render={({history})=> <App history={history}/>}/>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //   <Route path="/" render={({history})=> <App history={history}/>}/>
+    // </BrowserRouter>
+    <App/>
 , document.getElementById("app"));
 
