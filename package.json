@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/StrykeBack/waterpal#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "mongoose": "^5.3.0",
     "react": "^16.5.2",
     "react-dom": "16.4.2",
