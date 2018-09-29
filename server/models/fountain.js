@@ -1,44 +1,39 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 let fountainSchema = new Schema({
   name: { type: String, unique: true },
   borough: String,
   fountains: { type: Number, default: 0 }
-})
+});
 
-const Fountain = mongoose.model('Fountain', fountainSchema)
+const Fountain = mongoose.model('Fountain', fountainSchema);
 
-// const getFountain = (labels, cb) => {
-//   Inventory.find({ labels })
-//     .limit(20)
-//     .exec((err, results) => {
-//       if (err) cb(err)
+const getFountain = ({ name }, cb) => {
+  Fountain.find({ name })
+    .exec((err, results) => {
+      if (err) cb(err)
 
-//       cb(null, results)
-//     })
-// }
+      cb(null, results)
+    })
+}
 
-const createEntry = (
-  { site_name, borough, drinking_fountains },
-  cb
-) => {
-  new Fountain({
-    name: site_name,
-    borough,
-    fountains: drinking_fountains
-  })
-    .save()
+const createEntry = ({ site_name, borough, drinking_fountains }, cb) => {
+  Fountain.update(
+    { name: site_name },
+    { name: site_name, borough, $inc: { fountains: drinking_fountains } },
+    { upsert: true }
+  )
     .catch(err => {
-      cb(err)
-      // Fountain.update({ name: site_name }, { $inc: { fountains: drinking_fountains } })
+      console.error('Error creating entry:', err.errmsg);
+      cb(err);
     })
     .then(response => {
-      cb(null, response)
-    })
-}
+      cb(null, response);
+    });
+};
 
 module.exports = {
-  createEntry,
-  Fountain
-}
+  getFountain,
+  createEntry
+};
