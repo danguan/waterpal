@@ -4,6 +4,7 @@
   "description": "Data visualization for finding places to get clean drinking water in NYC",
   "main": "index.js",
   "scripts": {
+    "react-dev": "webpack -d --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,10 +19,11 @@
   },
   "homepage": "https://github.com/StrykeBack/waterpal#readme",
   "dependencies": {
+    "react": "^16.5.2",
     "react-dom": "16.4.2",
+    "react-router-dom": "^4.3.1",
     "semantic-ui-react": "^0.82.2",
-    "watson-developer-cloud": "^3.8.0",
-    "react": "^16.5.2"
+    "watson-developer-cloud": "^3.8.0"
   },
   "devDependencies": {
     "axios": "^0.18.0",
