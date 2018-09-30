@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const parser = require('body-parser');
 const morgan = require('morgan');
 const {
@@ -31,6 +32,10 @@ app.post('/fountain', createEntry);
 // End
 
 app.use(express.static(__dirname + '/../client/dist'));
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '../../client/dist/index.html'));
+
+})
 
 app.listen(port, () => {
   console.log('Server connected on', port);

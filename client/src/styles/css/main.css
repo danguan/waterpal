@@ -8,6 +8,6 @@
   src: url(../fonts/LIQUIDO-Regular.otf);
 }
 
-/* .waterboi {
-  font-family: liquido;
-} */
+body{
+  height: 100vh
+}
