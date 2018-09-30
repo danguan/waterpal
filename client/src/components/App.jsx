@@ -8,6 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import Loading from './Loading.jsx'
+import LoginComponent from './LoginComponent.jsx';
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -18,8 +19,13 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 export default class App extends React.Component {
   state = {
+    position : [40.75, -73.97],
     markers: []
   };
+
+  handleMapChange = (e) => {
+    this.setState({position: Object.values(e.target.getCenter())})
+  }
 
   componentDidMount() {
     axios
@@ -35,16 +41,18 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-    const position = [40.8, -73.8];
     return (
       <div>
         WaterPal
+        <LoginComponent/>
         <Loading/>
         <Map
           style={{ height: '100vh', width: '100vw' }}
-          center={position}
-          zoom="13"
+          center={this.state.position}
+          zoom="15"
+          minZoom="12"
+          maxZoom="20"
+          onmoveend={this.handleMapChange}
         >
           <TileLayer
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
