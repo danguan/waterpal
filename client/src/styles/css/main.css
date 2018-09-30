@@ -15,7 +15,7 @@
 
 @keyframes down {
   0% {
-    top: -3%;
+    top: -23%;
   }
   100% {
     top: 50%;
@@ -24,7 +24,7 @@
 
 .move {
   animation-name: down;
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-fill-mode: forwards;
 }
 
