@@ -10,6 +10,9 @@ const getLongLat = loc => {
       )
       .then(({ data }) => {
         resolve({
+          gMapsUrl: `https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${
+            data.results[0].place_id
+          }`,
           address: data.results[0].formatted_address,
           lng: data.results[0].geometry.location.lng,
           lat: data.results[0].geometry.location.lat
