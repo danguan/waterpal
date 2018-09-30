@@ -1,5 +1,6 @@
 import React from 'react';
 import L from 'leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import axios from 'axios';
 import { Route, withRouter } from 'react-router-dom'
 import { Switch } from 'react-router'
@@ -12,16 +13,19 @@ import LoginComponent from './LoginComponent.jsx';
 import MapComponent from './MapComponent.jsx';
 import Header from './Header.jsx';
 
-let DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow
+let FountainIcon = L.icon({
+  iconUrl: 'http://maps.google.com/mapfiles/ms/micons/orange-dot.png'
 });
 
-L.Marker.prototype.options.icon = DefaultIcon;
 
 class App extends React.Component {
   state = {
+    position: [40.75, -73.97],
     markers: []
+  };
+
+  handleMapChange = e => {
+    this.setState({ position: Object.values(e.target.getCenter()) });
   };
 
   componentDidMount() {
