@@ -39,8 +39,12 @@ module.exports = {
           SRC_DIR,
           /node_modules/
         ],
-        loader: "file-loader"
+        loader: "file-loader?name=assets/[name].[ext]"
+      },
+      {
+        test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
+        loader: 'file-loader?name=fonts/[name].[ext]'
       },
     ]
   }
-}
+};

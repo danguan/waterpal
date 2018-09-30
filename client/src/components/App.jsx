@@ -8,7 +8,10 @@ import 'leaflet/dist/leaflet.css';
 
 let FountainIcon = L.icon({
   iconUrl: 'http://maps.google.com/mapfiles/ms/micons/orange-dot.png'
-});
+})
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import Loading from './Loading.jsx'
 
 export default class App extends React.Component {
   state = {
@@ -33,6 +36,7 @@ export default class App extends React.Component {
     return (
       <div>
         WaterPal
+        <Loading/>
         <Map
           style={{ height: '100vh', width: '100vw' }}
           center={position}
