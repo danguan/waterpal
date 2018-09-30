@@ -15,10 +15,10 @@
 
 @keyframes down {
   0% {
-    top: -3%
+    top: -3%;
   }
   100% {
-    top: 50%
+    top: 50%;
   }
 }
 
@@ -30,7 +30,7 @@
 
 @keyframes disappear {
   to {
-    top: 125%
+    top: 125%;
   }
 }
 
@@ -38,3 +38,17 @@
   animation-name: disappear;
   animation-fill-mode: forwards;
 }
+
+/* @font-face {
+  font-family: liquido-fluid;
+  src: url(../fonts/LIQUIDO-Fluid.otf);
+}
+
+@font-face {
+  font-family: liquido;
+  src: url(../fonts/LIQUIDO-Regular.otf);
+} */
+
+/* body {
+  height: 100vh;
+} */

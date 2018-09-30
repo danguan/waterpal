@@ -1,27 +1,34 @@
 import React from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Route, BrowserRouter } from 'react-router-dom';
+import axios from 'axios';
+
+import { Route, BrowserRouter, withRouter } from 'react-router-dom';
+import { Switch } from 'react-router';
 import { Input, Button } from 'semantic-ui-react';
 
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/leaflet.css';
 
+import Loading from './Loading.jsx';
+import LoginComponent from './LoginComponent.jsx';
+import MapComponent from './MapComponent.jsx';
+import Header from './Header.jsx';
 import Landing from './Landing.jsx';
 import Raindrops from './Raindrops.jsx';
 
-let DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow
+let FountainIcon = L.icon({
+  iconUrl: 'http://maps.google.com/mapfiles/ms/micons/orange-dot.png'
 });
 
-L.Marker.prototype.options.icon = DefaultIcon;
-
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     clicked: false,
-    droplets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    droplets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    position: [40.75, -73.97],
+    markers: []
   };
 
   handleClick() {
@@ -30,10 +37,27 @@ export default class App extends React.Component {
     });
   }
 
+  handleMapChange = e => {
+    this.setState({ position: Object.values(e.target.getCenter()) });
+  };
+
+  componentDidMount() {
+    axios
+      .get('/fountain')
+      .then(({ data }) => {
+        this.setState({
+          markers: data
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   render() {
-    // const position = [40.8,-73.8];
     return (
       <div>
+        <Header />
         <Input
           className={this.state.clicked ? 'move' : ''}
           labelPosition="right"
@@ -77,23 +101,18 @@ export default class App extends React.Component {
           );
         })}
 
-        {/* <Map style={{height:"100vh", width:"100vw"}} center={position} zoom="13">
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        <Switch>
+          <Route path="/" exact render={() => <Loading />} />
+          <Route path="/login" render={() => <LoginComponent />} />
+          <Route
+            path="/map"
+            render={() => <MapComponent markers={this.state.markers} />}
           />
-          <Marker position={position}>
-            <Popup>
-              A pretty CSS3 popup. <br/> Easily customizable.
-            </Popup>
-          </Marker>
-          <Marker position={[40.9,-72.6]}>
-            <Popup>
-              A pretty CSS3 popup. <br/> Easily customizable.
-            </Popup>
-          </Marker>
-        </Map> */}
+        </Switch>
       </div>
     );
   }
 }
+
+const ShowTheLocationWithRouter = withRouter(App);
+export default App;
