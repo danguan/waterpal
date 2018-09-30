@@ -24,6 +24,7 @@ module.exports = {
       });
   },
   getLongLat: (req, res) => {
+    console.log(req.query.site_name)
     geocoding
       .getLongLat(req.query.site_name)
       .then(data => {
