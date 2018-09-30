@@ -1,27 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
-import { Route, BrowserRouter, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { Switch } from 'react-router';
 import { Input, Button } from 'semantic-ui-react';
 
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import MarkerClusterGroup from 'react-leaflet-markercluster';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import 'leaflet/dist/leaflet.css';
-
-import Loading from './Loading.jsx';
+import Loading from './Loading.jsx'
 import LoginComponent from './LoginComponent.jsx';
 import MapComponent from './MapComponent.jsx';
 import Header from './Header.jsx';
 import Landing from './Landing.jsx';
 import Raindrops from './Raindrops.jsx';
-
-let FountainIcon = L.icon({
-  iconUrl: 'http://maps.google.com/mapfiles/ms/micons/orange-dot.png'
-});
 
 class App extends React.Component {
   state = {
