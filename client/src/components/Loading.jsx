@@ -1,13 +1,20 @@
 import React from 'react';
 import LiquidFillGauge from 'react-liquid-gauge';
-import Tear from './svgs/Tear.jsx'
 
 export default class Landing extends React.Component {
   state = {};
 
   render() {
     return (
-      <div>
+      <div
+        className={this.props.clicked ? 'move' : ''}
+        style={{
+          position: 'fixed',
+          top: '-23%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)'
+        }}
+      >
         <LiquidFillGauge
           style={{ margin: '0 auto' }}
           value={58}
@@ -18,21 +25,23 @@ export default class Landing extends React.Component {
           gradient
           circleStyle={{
             fill: '#fff'
-        }}
+          }}
           textStyle={{
             fontFamily: 'liquido'
           }}
           waveTextStyle={{
-              fill: '#fff',
-              fontFamily: 'liquido-fluid'
+            fill: '#fff',
+            fontFamily: 'liquido-fluid'
           }}
           textRenderer={() => {
-            return <tspan style={{ fontSize: '400%'}}>
-            <tspan style={{ fontSize: '140%'}}>W</tspan>
-            ATER
-            <tspan style={{ fontSize: '140%'}}>P</tspan>
-            AL
-            </tspan>;
+            return (
+              <tspan style={{ fontSize: '400%' }}>
+                <tspan style={{ fontSize: '140%' }}>W</tspan>
+                ATER
+                <tspan style={{ fontSize: '140%' }}>P</tspan>
+                AL
+              </tspan>
+            );
           }}
         />
       </div>
