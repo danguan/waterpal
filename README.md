@@ -4,7 +4,7 @@ WaterPal is a data visualization webapp that finds nearby water fountains in NYC
 
 ## Team
 
-- **Team Members**: [Daniel Guan (@StrykeBack)](https://github.com/StrykeBack), [Jack Lim (@TheCodingJack)](https://github.com/thecodingjack), [Erik Lin (@lin-erik)](https://github.com/lin-erik)
+- **Team Members**: [Daniel Guan (@danguan)](https://github.com/danguan), [Jack Lim (@TheCodingJack)](https://github.com/thecodingjack), [Erik Lin (@lin-erik)](https://github.com/lin-erik)
 
 ## Demo
 
