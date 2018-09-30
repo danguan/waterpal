@@ -1,49 +1,31 @@
 import React from 'react';
-import { Sticky, Transition } from 'semantic-ui-react';
-
-import Navbar from './Navbar.jsx';
 
 export default class Landing extends React.Component {
-  state = {
-    visible: false
-  };
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        visible: true
-      });
-    }, 3000);
-  }
+  state = {};
 
   render() {
     return (
-      <div>
-        <div style={{ height: '100vh', marginBottom: '3%' }}>
-          <img
-            style={{
-              height: '75vh',
-              width: '75vw',
-              position: 'relative',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)'
-            }}
-            src="https://www.holoong.com/600x800/042001314920149957.jpg"
+      <div
+        className={this.props.clicked ? 'out' : ''}
+        style={{
+          animationDuration: '3s',
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)'
+        }}
+      >
+        <svg width="25vw" height="25vh" viewBox="0 0 30 42">
+          <path
+            class='active'
+            cursor="pointer"
+            onClick={() => this.props.handleClick()}
+            fill="transparent"
+            stroke="#000"
+            stroke-width="1.0"
+            d="M15 3 Q16.5 6.8 25 18 A12.8 12.8 0 1 1 5 18 Q13.5 6.8 15 3z"
           />
-        </div>
-
-        <div style={{ height: '100vh' }}>
-          <img
-            style={{
-              position: 'relative',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)'
-            }}
-            src="https://www.holoong.com/600x800/042001314920149957.jpg"
-          />
-        </div>
+        </svg>
       </div>
     );
   }
