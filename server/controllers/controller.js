@@ -1,4 +1,5 @@
 const fountain = require('../models/fountain.js');
+const user = require('../models/user.js');
 const geocoding = require('../helpers/geocoding.js');
 
 module.exports = {
@@ -23,6 +24,7 @@ module.exports = {
       });
   },
   getLongLat: (req, res) => {
+    console.log(req.query.site_name)
     geocoding
       .getLongLat(req.query.site_name)
       .then(data => {
@@ -31,5 +33,14 @@ module.exports = {
       .catch(err => {
         console.error(err);
       });
+  },
+  createUser: (req, res) => {
+    user.createUser(req.body)
+    .then(data => {
+      res.send({login: true, username: req.body.username})
+    })
+    .catch(err => {
+      console.error(err)
+    })
   }
 };
