@@ -40,6 +40,7 @@ export default class App extends React.Component {
     return (
       <div>
         WaterPal
+        <Loading/>
         <Map
           style={{ height: '100vh', width: '100vw' }}
           center={position}
