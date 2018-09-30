@@ -1,0 +1,54 @@
+@keyframes fill {
+  0% {
+    fill: transparent;
+  }
+  100% {
+    fill: lightblue;
+  }
+}
+
+.active:hover {
+  animation-name: fill;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes down {
+  0% {
+    top: -23%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+.move {
+  animation-name: down;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes disappear {
+  to {
+    top: 125%;
+  }
+}
+
+.out {
+  animation-name: disappear;
+  animation-fill-mode: forwards;
+}
+
+/* @font-face {
+  font-family: liquido-fluid;
+  src: url(../fonts/LIQUIDO-Fluid.otf);
+}
+
+@font-face {
+  font-family: liquido;
+  src: url(../fonts/LIQUIDO-Regular.otf);
+} */
+
+/* body {
+  height: 100vh;
+} */

@@ -1,44 +1,60 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 let fountainSchema = new Schema({
   name: { type: String, unique: true },
   borough: String,
+  address: String,
+  url: String,
+  lng: Number,
+  lat: Number,
   fountains: { type: Number, default: 0 }
-})
+});
 
-const Fountain = mongoose.model('Fountain', fountainSchema)
+const Fountain = mongoose.model('Fountain', fountainSchema);
 
-// const getFountain = (labels, cb) => {
-//   Inventory.find({ labels })
-//     .limit(20)
-//     .exec((err, results) => {
-//       if (err) cb(err)
+const getFountain = () => {
+  return Fountain.find({});
+};
 
-//       cb(null, results)
-//     })
-// }
+const getNearby = (lat, lng) => {
+  lng = Number(lng);
+  lat = Number(lat);
+  return Fountain.find({
+    $or: [
+      {
+        lat: {
+          $lt: lat + 0.01,
+          $gt: lat - 0.01
+        },
 
-const createEntry = (
-  { site_name, borough, drinking_fountains },
-  cb
-) => {
-  new Fountain({
-    name: site_name,
-    borough,
-    fountains: drinking_fountains
-  })
-    .save()
-    .catch(err => {
-      cb(err)
-      // Fountain.update({ name: site_name }, { $inc: { fountains: drinking_fountains } })
-    })
-    .then(response => {
-      cb(null, response)
-    })
-}
+        lng: {
+          $lt: lng + 0.01,
+          $gt: lng - 0.01
+        }
+      }
+    ]
+  });
+};
+
+const createEntry = ({ site_name, borough, drinking_fountains, lng, lat }) => {
+  return Fountain.updateOne(
+    { name: site_name },
+    {
+      name: site_name,
+      borough,
+      lng,
+      lat,
+      address,
+      url: gMapsUrl,
+      $inc: { fountains: drinking_fountains }
+    },
+    { upsert: true }
+  );
+};
 
 module.exports = {
-  createEntry,
-  Fountain
-}
+  getFountain,
+  getNearby,
+  createEntry
+};

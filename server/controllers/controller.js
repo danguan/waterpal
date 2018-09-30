@@ -1,18 +1,56 @@
-const fountain = require('../models/fountain.js')
+const fountain = require('../models/fountain.js');
+const user = require('../models/user.js');
+const geocoding = require('../helpers/geocoding.js');
 
 module.exports = {
-  fountain: {
-    // getFountain: (req, res) => {
-      //
-    // },
-    createEntry: (req, res) => {
-      console.log(req.body)
-      
-      fountain.createEntry(req.body, (err, result) => {
-        if (err) res.status(404).send('Error creating entry')
-
-        res.send(result)
+  getFountain: (req, res) => {
+    fountain
+      .getFountain(req.query.name)
+      .then(data => {
+        res.send(data);
       })
-    }
+      .catch(err => {
+        res.status(404).send('Error finding fountain', err);
+      });
+  },
+  createEntry: (req, res) => {
+    fountain
+      .createEntry(req.body)
+      .then(data => {
+        res.send('Created entry');
+      })
+      .catch(err => {
+        res.status(404).send('Error creating entry:', err);
+      });
+  },
+  getLongLat: (req, res) => {
+    console.log(req.query.site_name)
+    geocoding
+      .getLongLat(req.query.site_name)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  },
+  getNearby: (req, res) => {
+    fountain
+      .getNearby(req.query.lat, req.query.lng)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  },
+  createUser: (req, res) => {
+    user.createUser(req.body)
+    .then(data => {
+      res.send({login: true, username: req.body.username})
+    })
+    .catch(err => {
+      console.error(err)
+    })
   }
-}
+};
