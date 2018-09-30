@@ -10,6 +10,7 @@ const getLongLat = loc => {
       )
       .then(({ data }) => {
         resolve({
+          address: data.results[0].formatted_address,
           lng: data.results[0].geometry.location.lng,
           lat: data.results[0].geometry.location.lat
         });

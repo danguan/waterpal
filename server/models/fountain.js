@@ -11,16 +11,22 @@ let fountainSchema = new Schema({
 
 const Fountain = mongoose.model('Fountain', fountainSchema);
 
-const getFountain = name => {
-  return Fountain.find({ name })
+const getFountain = () => {
+  return Fountain.find({});
 };
 
 const createEntry = ({ site_name, borough, drinking_fountains, lng, lat }) => {
   return Fountain.updateOne(
     { name: site_name },
-    { name: site_name, borough, lng, lat, $inc: { fountains: drinking_fountains } },
+    {
+      name: site_name,
+      borough,
+      lng,
+      lat,
+      $inc: { fountains: drinking_fountains }
+    },
     { upsert: true }
-  )
+  );
 };
 
 module.exports = {

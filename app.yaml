@@ -1,5 +1,5 @@
-runtime: nodejs
-env: flex
+runtime: nodejs8
+env: standard
 
 # This sample incurs costs to run on the App Engine flexible environment. 
 # The settings below are to reduce costs during testing and are not appropriate
@@ -12,6 +12,6 @@ resources:
   memory_gb: 0.5
   disk_size_gb: 10
 handlers:
-  - url: /favicon\.ico
+  - url: /favicon.ico
     static_files: client/dist/favicon.ico
-    upload: client/dist/favicon\.ico
+    upload: client/dist/favicon.ico
