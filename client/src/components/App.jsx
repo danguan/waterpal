@@ -8,21 +8,19 @@ import 'leaflet/dist/leaflet.css';
 
 let FountainIcon = L.icon({
   iconUrl: 'http://maps.google.com/mapfiles/ms/micons/orange-dot.png'
-})
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import Loading from './Loading.jsx'
+});
+import Loading from './Loading.jsx';
 import LoginComponent from './LoginComponent.jsx';
 
 export default class App extends React.Component {
   state = {
-    position : [40.75, -73.97],
+    position: [40.75, -73.97],
     markers: []
   };
 
-  handleMapChange = (e) => {
-    this.setState({position: Object.values(e.target.getCenter())})
-  }
+  handleMapChange = e => {
+    this.setState({ position: Object.values(e.target.getCenter()) });
+  };
 
   componentDidMount() {
     axios
@@ -41,8 +39,8 @@ export default class App extends React.Component {
     return (
       <div>
         WaterPal
-        <LoginComponent/>
-        <Loading/>
+        <LoginComponent />
+        <Loading />
         <Map
           style={{ height: '100vh', width: '100vw' }}
           center={this.state.position}
@@ -69,7 +67,7 @@ export default class App extends React.Component {
                       <br />
                       {marker.address}
                       <br />
-                      {`${marker.fountains} Fountain${
+                      {`${marker.fountains} Water Fountain${
                         marker.fountains === 1 ? '' : 's'
                       }`}
                     </Popup>
