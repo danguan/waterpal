@@ -47,6 +47,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "16.4.2",
+    "react-geosuggest": "^2.8.0",
     "react-leaflet": "^2.0.1",
     "react-leaflet-markercluster": "^2.0.0-rc3",
     "react-liquid-gauge": "^1.2.4",
