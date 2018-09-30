@@ -3,12 +3,10 @@ import axios from 'axios';
 
 import { Route, withRouter } from 'react-router-dom';
 import { Switch } from 'react-router';
-import { Input, Button } from 'semantic-ui-react';
 
-import Loading from './Loading.jsx'
+import Loading from './Loading.jsx';
 import LoginComponent from './LoginComponent.jsx';
 import MapComponent from './MapComponent.jsx';
-import Header from './Header.jsx';
 import Landing from './Landing.jsx';
 import Raindrops from './Raindrops.jsx';
 
@@ -20,10 +18,16 @@ class App extends React.Component {
     markers: []
   };
 
-  handleClick() {
+  handleClick = (e) => {
     this.setState({
       clicked: !this.state.clicked
     });
+
+    const {
+      history: { push }
+    } = this.props;
+    e.preventDefault();
+    setTimeout(() => push('/map'), 5000);
   }
 
   handleMapChange = e => {
@@ -46,28 +50,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <Input
-          className={this.state.clicked ? 'move' : ''}
-          labelPosition="right"
-          type="text"
-          placeholder="Address"
-          style={{
-            position: 'fixed',
-            top: '-3%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)'
-          }}
-        >
-          <Button basic>$</Button>
-          <input />
-          <Button basic>.00</Button>
-        </Input>
-
-        <Landing
-          clicked={this.state.clicked}
-          handleClick={this.handleClick.bind(this)}
-        />
+        <Loading clicked={this.state.clicked} />
 
         {this.state.droplets.map(ind => {
           const speed = Math.floor(Math.random() * 8) + 's';
@@ -91,7 +74,16 @@ class App extends React.Component {
         })}
 
         <Switch>
-          <Route path="/" exact render={() => <Loading />} />
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Landing
+                clicked={this.state.clicked}
+                handleClick={this.handleClick}
+              />
+            )}
+          />
           <Route path="/login" render={() => <LoginComponent />} />
           <Route
             path="/map"
