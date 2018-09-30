@@ -1,21 +1,12 @@
 import React from 'react';
-import L from 'leaflet';
-import MarkerClusterGroup from 'react-leaflet-markercluster';
 import axios from 'axios';
 import { Route, withRouter } from 'react-router-dom'
 import { Switch } from 'react-router'
-import 'leaflet/dist/leaflet.css';
 
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import Loading from './Loading.jsx'
 import LoginComponent from './LoginComponent.jsx';
 import MapComponent from './MapComponent.jsx';
 import Header from './Header.jsx';
-
-let FountainIcon = L.icon({
-  iconUrl: 'http://maps.google.com/mapfiles/ms/micons/orange-dot.png'
-});
 
 
 class App extends React.Component {
