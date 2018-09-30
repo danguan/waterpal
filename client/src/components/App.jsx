@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import Loading from './Loading.jsx'
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -39,6 +40,7 @@ export default class App extends React.Component {
     return (
       <div>
         WaterPal
+        <Loading/>
         <Map
           style={{ height: '100vh', width: '100vw' }}
           center={position}
