@@ -5,7 +5,8 @@ const morgan = require('morgan');
 const {
   getFountain,
   createEntry,
-  getLongLat
+  getLongLat,
+  createUser
 } = require('./controllers/controller.js');
 
 const db = require('./database/mongoose.js');
@@ -25,6 +26,7 @@ app.get('/longlat', getLongLat);
 // End
 
 // POST requests
+app.post('/user', createUser)
 app.post('/fountain', createEntry);
 // End
 
