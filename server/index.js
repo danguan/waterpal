@@ -7,6 +7,7 @@ const {
   getFountain,
   createEntry,
   getLongLat,
+  getNearby,
   createUser
 } = require('./controllers/controller.js');
 
@@ -24,18 +25,18 @@ app.use(morgan('dev'));
 // GET requests
 app.get('/fountain', getFountain);
 app.get('/longlat', getLongLat);
+app.get('/nearby', getNearby);
 // End
 
 // POST requests
-app.post('/user', createUser)
+app.post('/user', createUser);
 app.post('/fountain', createEntry);
 // End
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname + '../../client/dist/index.html'));
-
-})
+});
 
 app.listen(port, () => {
   console.log('Server connected on', port);

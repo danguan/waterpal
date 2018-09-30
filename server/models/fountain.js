@@ -15,6 +15,26 @@ const getFountain = () => {
   return Fountain.find({});
 };
 
+const getNearby = (lat, lng) => {
+  lng = Number(lng);
+  lat = Number(lat);
+  return Fountain.find({
+    $or: [
+      {
+        lat: {
+          $lt: lat + 0.01,
+          $gt: lat - 0.01
+        },
+
+        lng: {
+          $lt: lng + 0.01,
+          $gt: lng - 0.01
+        }
+      }
+    ]
+  });
+};
+
 const createEntry = ({ site_name, borough, drinking_fountains, lng, lat }) => {
   return Fountain.updateOne(
     { name: site_name },
@@ -31,5 +51,6 @@ const createEntry = ({ site_name, borough, drinking_fountains, lng, lat }) => {
 
 module.exports = {
   getFountain,
+  getNearby,
   createEntry
 };

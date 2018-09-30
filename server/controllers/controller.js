@@ -34,6 +34,16 @@ module.exports = {
         console.error(err);
       });
   },
+  getNearby: (req, res) => {
+    fountain
+      .getNearby(req.query.lat, req.query.lng)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  },
   createUser: (req, res) => {
     user.createUser(req.body)
     .then(data => {
