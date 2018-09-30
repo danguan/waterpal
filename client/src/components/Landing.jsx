@@ -17,9 +17,9 @@ export default class Landing extends React.Component {
       >
         <svg width="25vw" height="25vh" viewBox="0 0 30 42">
           <path
-            class='active'
+            class="active"
             cursor="pointer"
-            onClick={() => this.props.handleClick()}
+            onClick={evt => this.props.handleClick(evt)}
             fill="transparent"
             stroke="#000"
             stroke-width="1.0"
